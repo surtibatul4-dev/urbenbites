@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Urban Bites Cafe & Pizzeria | Civil Road, Himatnagar</title>
+  <meta name="description" content="Welcome to Urban Bites Cafe & Pizzeria in Himatnagar. Artisan stone-baked pizzas, cheesy garlic breads, spicy pastas, and chilled cafe coolers. Order online or via WhatsApp at 9714100891.">
+  <meta name="keywords" content="Urban Bites, Cafe Himatnagar, Pizza Himatnagar, Margherita Pizza, Online Food Delivery, Pure Veg Cafe">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍕</text></svg>">
+  
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="Urban.css">
+  <link rel="stylesheet" href="Urban Res.css">
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Drawer Backdrop Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="app.closeCart(); app.closeMobileNav();"></div>
+
+  <!-- ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar">
+        <!-- Brand Logo -->
+        <a href="#home" onclick="app.scrollToSection('home'); return false;" class="brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">Urban<span>Bites</span></span>
+            <span class="brand-subtitle">Cafe & Pizzeria</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <ul class="nav-menu">
+          <li><a href="#home" onclick="app.scrollToSection('home'); return false;" class="nav-link active">Home</a></li>
+          <li><a href="#popular" onclick="app.scrollToSection('popular'); return false;" class="nav-link">Popular Food</a></li>
+          <li><a href="#menu" onclick="app.scrollToSection('menu'); return false;" class="nav-link">Our Menu</a></li>
+          <li><a href="#order-online" onclick="app.scrollToSection('order-online'); return false;" class="nav-link">Order Online</a></li>
+          <li><a href="#reviews" onclick="app.scrollToSection('reviews'); return false;" class="nav-link">Reviews</a></li>
+          <li><a href="#about" onclick="app.scrollToSection('about'); return false;" class="nav-link">About Us</a></li>
+          <li><a href="#contact" onclick="app.scrollToSection('contact'); return false;" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Right Action Items -->
+        <div class="nav-actions">
+          <button class="cart-btn-nav" id="cartNavBtn" onclick="app.openCart()" aria-label="View Shopping Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span>Cart</span>
+            <span class="cart-count-badge">0</span>
+          </button>
+
+          <button class="order-nav-btn" onclick="app.scrollToSection('order-online')" aria-label="Order Online">Order Now</button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button class="hamburger-btn" onclick="app.toggleMobileNav()" aria-label="Toggle navigation menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <aside class="mobile-drawer" id="mobileNavDrawer">
+    <div class="drawer-header">
+      <div class="brand">
+        <div class="brand-icon">🍕</div>
+        <div class="brand-text">
+          <span class="brand-title">Urban<span>Bites</span></span>
+          <span class="brand-subtitle">Cafe & Pizzeria</span>
+        </div>
+      </div>
+      <button class="drawer-close-btn" onclick="app.closeMobileNav()" aria-label="Close menu">✕</button>
+    </div>
+
+    <ul class="drawer-nav-list">
+      <li><a href="#home" onclick="app.scrollToSection('home'); return false;" class="drawer-nav-link active">🏠 Home</a></li>
+      <li><a href="#popular" onclick="app.scrollToSection('popular'); return false;" class="drawer-nav-link">⭐ Popular Food</a></li>
+      <li><a href="#menu" onclick="app.scrollToSection('menu'); return false;" class="drawer-nav-link">🍕 Our Menu</a></li>
+      <li><a href="#order-online" onclick="app.scrollToSection('order-online'); return false;" class="drawer-nav-link">🛵 Order Online</a></li>
+      <li><a href="#reviews" onclick="app.scrollToSection('reviews'); return false;" class="drawer-nav-link">⭐ Customer Reviews</a></li>
+      <li><a href="#about" onclick="app.scrollToSection('about'); return false;" class="drawer-nav-link">☕ About Cafe</a></li>
+      <li><a href="#contact" onclick="app.scrollToSection('contact'); return false;" class="drawer-nav-link">📞 Contact Us</a></li>
+    </ul>
+
+    <div class="drawer-footer">
+      <button class="btn btn-whatsapp btn-block" onclick="window.open('https://wa.me/919714100891', '_blank')">
+        💬 Order via WhatsApp
+      </button>
+      <div style="font-size:0.85rem; color:var(--text-muted); text-align:center;">
+        Civil Road, Sahkarijin, Himatnagar<br>
+        <strong>+91 9714100891</strong>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       CART DRAWER (SLIDE-OVER CHECKOUT)
+       ========================================================================== -->
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <div class="cart-header-title">
+        <span>🛒 Your Food Basket</span>
+        <span class="cart-count-badge">0</span>
+      </div>
+      <button class="drawer-close-btn" onclick="app.closeCart()" aria-label="Close cart">✕</button>
+    </div>
+
+    <!-- Scrollable Items List -->
+    <div class="cart-items-container" id="cartItemsContainer">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Cart Drawer Footer -->
+    <div class="cart-footer" id="cartDrawerFooter">
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <strong id="drawerSubtotal">₹0</strong>
+      </div>
+      <div class="cart-summary-line">
+        <span>Delivery Charges</span>
+        <strong id="drawerDelivery">₹15</strong>
+      </div>
+      <div class="cart-summary-line">
+        <span>Taxes (5% GST)</span>
+        <strong id="drawerTax">₹0</strong>
+      </div>
+      <div class="cart-summary-line total-line">
+        <span>Grand Total</span>
+        <strong id="drawerTotal" style="color:var(--primary);">₹0</strong>
+      </div>
+
+      <div class="cart-checkout-actions">
+        <button class="btn btn-whatsapp btn-block" onclick="app.closeCart(); app.scrollToSection('order-online')">
+          🛵 Proceed to Order Online
+        </button>
+        <button class="btn btn-secondary btn-block btn-sm" onclick="app.clearCart()">
+          Clear Cart
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Floating Cart Trigger -->
+  <div class="floating-cart-trigger" id="floatingCartTrigger" style="display:none;" onclick="app.openCart()">
+    <span style="font-size:1.2rem;">🛒</span>
+    <span><strong class="cart-count-badge">0</strong> items</span>
+    <span style="color:#DDA853; font-weight:800;" id="floatingCartTotal">₹0</span>
+    <span style="font-size:0.85rem; opacity:0.9;">View Cart →</span>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION (HOME)
+         ========================================================================== -->
+    <section class="hero-section" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-tag">
+              <span class="hero-tag-pulse"></span>
+              <span>100% Pure Veg Cafe & Pizzeria</span>
+            </div>
+
+            <h1 class="hero-heading">
+              Savor The Urban Flavor At <span class="highlight">Urban Bites</span>
+            </h1>
+
+            <p class="hero-desc">
+              Indulge in artisanal stone-baked pizzas, cheesy garlic breads, spicy pastas, and handcrafted cafe coolers. Freshly baked daily with hand-tossed dough and secret herbs in Himatnagar.
+            </p>
+
+            <div class="hero-buttons">
+              <button class="btn btn-primary" onclick="app.scrollToSection('menu')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                Explore Full Menu
+              </button>
+              <button class="btn btn-secondary" onclick="app.scrollToSection('order-online')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                Order Online
+              </button>
+              <button class="btn btn-secondary" style="background:#FFF; color:var(--secondary);" onclick="app.scrollToSection('popular')">
+                ⭐ Popular Food
+              </button>
+            </div>
+
+            <div class="hero-highlights">
+              <div class="hero-highlight-item">
+                <div class="hero-highlight-icon">🌿</div>
+                <div class="hero-highlight-text">
+                  <strong>100% Pure Veg</strong>
+                  <span>Fresh ingredients</span>
+                </div>
+              </div>
+              <div class="hero-highlight-item">
+                <div class="hero-highlight-icon">⚡</div>
+                <div class="hero-highlight-text">
+                  <strong>30 Min Delivery</strong>
+                  <span>Himatnagar city</span>
+                </div>
+              </div>
+              <div class="hero-highlight-item">
+                <div class="hero-highlight-icon">⭐</div>
+                <div class="hero-highlight-text">
+                  <strong>4.9 Star Rating</strong>
+                  <span>Loved by foodies</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Media Visual -->
+          <div class="hero-media-wrapper">
+            <div class="hero-image-card">
+              <img src="images/hero.jpg" alt="Artisan Margherita Pizza and Italian Pasta at Urban Bites Cafe" fetchpriority="high">
+            </div>
+
+            <!-- Top Floating Badge -->
+            <div class="hero-float-badge badge-top" onclick="app.scrollToSection('popular')" style="cursor:pointer;">
+              <div class="float-badge-icon">🍕</div>
+              <div class="float-badge-text">
+                <strong>Margherita Pizza</strong>
+                <span>Only ₹165/- Hot & Fresh</span>
+              </div>
+            </div>
+
+            <!-- Bottom Floating Badge -->
+            <div class="hero-float-badge badge-bottom" onclick="window.open('https://wa.me/919714100891', '_blank')" style="cursor:pointer;">
+              <div class="float-badge-icon">📲</div>
+              <div class="float-badge-text">
+                <strong>WhatsApp Order</strong>
+                <span>Direct on +91 9714100891</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         WHY CHOOSE URBAN BITES
+         ========================================================================== -->
+    <section class="section-wrapper" style="background:#FFF;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Our Fresh Promise</span>
+          <h2 class="section-title">Why Foodies in Himatnagar Love Urban Bites</h2>
+          <p class="section-subtitle">
+            We don't cut corners. From our slow-fermented dough to our secret Italian spice rubs, every bite is an explosion of genuine quality.
+          </p>
+        </div>
+
+        <div class="home-feature-cards">
+          <div class="home-feature-box">
+            <div class="home-feature-icon">🌿</div>
+            <div class="home-feature-title">100% Pure Veg Kitchen</div>
+            <div class="home-feature-desc">Complete dietary purity. Highest hygiene standards with fresh produce and zero cross contamination.</div>
+          </div>
+          <div class="home-feature-box">
+            <div class="home-feature-icon">🔥</div>
+            <div class="home-feature-title">Stone-Baked Crusts</div>
+            <div class="home-feature-desc">Our dough is hand-stretched and baked in stone hearth ovens for that signature golden blister and crunch.</div>
+          </div>
+          <div class="home-feature-box">
+            <div class="home-feature-icon">⚡</div>
+            <div class="home-feature-title">Speedy 30-Min Delivery</div>
+            <div class="home-feature-desc">Packaged piping hot and delivered directly to your doorstep in Himatnagar. Flat ₹15 delivery charge!</div>
+          </div>
+          <div class="home-feature-box">
+            <div class="home-feature-icon">📲</div>
+            <div class="home-feature-title">Instant WhatsApp Orders</div>
+            <div class="home-feature-desc">Connect directly with our chef at 9714100891 without commission markups or hidden service fees.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         POPULAR FOOD SECTION
+         ========================================================================== -->
+    <section class="section-wrapper" id="popular" style="background:var(--bg-page);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Customer Favorites</span>
+          <h2 class="section-title">Trending Today at Urban Bites</h2>
+          <p class="section-subtitle">
+            Our most-loved artisan pizzas, garlic breads, and pastas ordered daily by Himatnagar foodies.
+          </p>
+        </div>
+
+        <!-- Bestseller Quick Row -->
+        <div class="bestseller-mini-row" id="bestsellerMiniRow"></div>
+
+        <!-- Popular Dishes Grid (Rendered by Urban.js) -->
+        <div class="popular-grid" id="popularDishesGrid">
+          <!-- Injected by JavaScript -->
+        </div>
+
+        <div style="text-align:center; margin-top:36px;">
+          <button class="btn btn-primary" onclick="app.scrollToSection('menu')" style="padding:14px 32px; font-size:1.05rem;">
+            <span>🍕 View Complete Cafe Menu</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         OUR MENU SECTION (SEARCH & CATEGORY TABS)
+         ========================================================================== -->
+    <section class="section-wrapper" id="menu" style="background:#FFF;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Handcrafted Menu</span>
+          <h2 class="section-title">Explore Our Full Menu</h2>
+          <p class="section-subtitle">
+            From stone-baked Italian crusts to spicy pastas and chilled coolers, crafted fresh upon order.
+          </p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="menu-search-wrapper" style="max-width:540px; margin:0 auto 28px; display:flex; gap:10px;">
+          <input type="text" id="menuSearchInput" class="form-control" placeholder="Search pizzas, garlic bread, pastas, combos...">
+          <button class="btn btn-secondary btn-sm" onclick="app.clearSearch()" style="flex-shrink:0;">Clear</button>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="menu-tabs">
+          <button class="tab-btn active" data-category="all">✨ All Items (51)</button>
+          <button class="tab-btn" data-category="pizzas">🍕 Stone-Baked Pizzas</button>
+          <button class="tab-btn" data-category="quick-bites">🥖 Garlic Bread & Sides</button>
+          <button class="tab-btn" data-category="pastas-noodles">🍝 Pastas & Noodles</button>
+          <button class="tab-btn" data-category="combos">🍱 Combos & Coolers</button>
+        </div>
+
+        <!-- Menu Items Grid (Rendered by Urban.js) -->
+        <div class="menu-grid" id="menuGrid">
+          <!-- Injected by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ORDER ONLINE SECTION (CHECKOUT & LIVE SUMMARY)
+         ========================================================================== -->
+    <section class="section-wrapper order-section" id="order-online">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Easy & Fast Checkout</span>
+          <h2 class="section-title">Place Your Order Online</h2>
+          <p class="section-subtitle">
+            Confirm directly on our website or transmit instantly via WhatsApp to <strong>+91 9714100891</strong>.
+          </p>
+        </div>
+
+        <div class="order-box">
+          <div class="order-steps-grid">
+            <!-- Left Column: Checkout Form -->
+            <div class="order-form-column">
+              <!-- Step 1: Order Type -->
+              <div class="form-group">
+                <label class="form-label">1. Choose Order Type</label>
+                <div class="order-type-selector">
+                  <div class="radio-card order-type-card selected" data-type="delivery">
+                    <span style="font-size:1.4rem;">🛵</span>
+                    <span>Home Delivery</span>
+                  </div>
+                  <div class="radio-card order-type-card" data-type="takeaway">
+                    <span style="font-size:1.4rem;">🥡</span>
+                    <span>Takeaway</span>
+                  </div>
+                  <div class="radio-card order-type-card" data-type="dine-in">
+                    <span style="font-size:1.4rem;">🍽️</span>
+                    <span>Dine-In</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2: Customer Details -->
+              <div class="form-group">
+                <label class="form-label" for="customerFullName">2. Your Name *</label>
+                <input type="text" id="customerFullName" class="form-control" placeholder="Name" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="customerPhone">3. Mobile Phone Number *</label>
+                <input type="tel" id="customerPhone" class="form-control" placeholder="Phone Number" required>
+              </div>
+
+              <div class="form-group" id="addressFormGroup">
+                <label class="form-label" for="customerAddress">4. Delivery Address in Himatnagar *</label>
+                <textarea id="customerAddress" class="form-control" rows="2" placeholder="House/Flat No, Society/Street, Landmark, Himatnagar"></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="customerNotes">Special Cooking Notes (Optional)</label>
+                <input type="text" id="customerNotes" class="form-control" placeholder="e.g. extra spicy, crispy crust, no onion">
+              </div>
+
+              <!-- Step 3: Payment Method -->
+              <div class="form-group">
+                <label class="form-label">5. Preferred Payment / Route</label>
+                <div class="payment-selector">
+                  <div class="radio-card payment-card selected" data-pay="whatsapp">
+                    <span style="font-size:1.4rem;">💬</span>
+                    <span>WhatsApp Order</span>
+                  </div>
+                  <div class="radio-card payment-card" data-pay="cash">
+                    <span style="font-size:1.4rem;">💵</span>
+                    <span>Cash on Delivery</span>
+                  </div>
+                  <div class="radio-card payment-card" data-pay="upi">
+                    <span style="font-size:1.4rem;">📱</span>
+                    <span>UPI / Online</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 4: Dual Checkout Buttons -->
+              <div class="order-buttons-group" style="margin-top:24px;">
+                <button type="button" class="btn btn-primary" onclick="app.placeOrder(false)" id="directOrderBtn">
+                  ⚡ Order Now
+                </button>
+                <button type="button" class="btn btn-whatsapp" onclick="app.placeOrder(true)" id="whatsappOrderBtn">
+                  📲 Place Order via WhatsApp (+91 9714100891)
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Column: Live Order Summary Card -->
+            <div class="order-summary-column">
+              <div style="background:#FAF7F2; border-radius:var(--radius-lg); padding:24px; border:1px solid var(--border-color); position:sticky; top:100px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; border-bottom:1px solid var(--border-color); padding-bottom:12px;">
+                  <h4 style="font-size:1.25rem; color:var(--secondary); margin:0;">🛒 Order Summary</h4>
+                  <span class="card-badge" style="background:var(--primary); color:#FFF;"><span class="cart-count-badge">0</span> items</span>
+                </div>
+
+                <!-- Items Container -->
+                <div id="orderSummaryList" style="max-height:260px; overflow-y:auto; margin-bottom:16px;">
+                  <div class="empty-hint" style="color:var(--text-muted); padding:16px 0;">No items in cart yet. Add dishes from the menu above!</div>
+                </div>
+
+                <!-- Price Calculations -->
+                <div style="border-top:1px dashed var(--border-color); padding-top:14px; display:flex; flex-direction:column; gap:10px;">
+                  <div class="cart-summary-line">
+                    <span>Subtotal</span>
+                    <strong id="orderPageSubtotal">₹0</strong>
+                  </div>
+                  <div class="cart-summary-line">
+                    <span>Delivery Charges</span>
+                    <strong id="orderPageDelivery">₹15</strong>
+                  </div>
+                  <div class="cart-summary-line">
+                    <span>Taxes (5% GST)</span>
+                    <strong id="orderPageTax">₹0</strong>
+                  </div>
+                  <div class="cart-summary-line total-line" style="border-top:1.5px solid var(--border-color); padding-top:10px;">
+                    <span style="font-size:1.15rem; font-weight:800; color:var(--secondary);">Grand Total</span>
+                    <strong id="orderPageGrandTotal" style="font-size:1.4rem; color:var(--primary);">₹0</strong>
+                  </div>
+                </div>
+
+                <div style="margin-top:18px; padding:12px; background:#FFF; border-radius:var(--radius-md); border:1px solid var(--border-light); font-size:0.85rem; color:var(--text-muted);">
+                  💡 <strong>Need Quick Help?</strong> Call or chat directly with our chef at <strong>+91 9714100891</strong>.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CUSTOMER REVIEWS SECTION (5-STAR SYSTEM)
+         ========================================================================== -->
+    <section class="section-wrapper reviews-section" id="reviews" style="background:#FFF;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Social Proof</span>
+          <h2 class="section-title">Loved by Himatnagar Foodies</h2>
+          <p class="section-subtitle">
+            Authentic dining experiences and reviews shared by our regular guests and pizza lovers.
+          </p>
+        </div>
+
+        <!-- Rating Summary Bar -->
+        <div class="reviews-summary-bar">
+          <div class="reviews-aggregate">
+            <div class="aggregate-score" id="aggregateScore">4.9</div>
+            <div class="aggregate-stars">
+              <div class="star-rating-display">★★★★★</div>
+              <div id="totalReviewCount" style="font-size:0.85rem; color:var(--text-muted);">Based on verified customer ratings</div>
+            </div>
+          </div>
+
+          <button class="btn btn-secondary" onclick="app.openReviewModal()">
+            ✍️ Write a Review
+          </button>
+        </div>
+
+        <!-- Reviews Grid (Rendered by Urban.js) -->
+        <div class="reviews-grid" id="customerReviewsGrid">
+          <!-- Injected by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT US SECTION
+         ========================================================================== -->
+    <section class="section-wrapper about-section" id="about" style="background:var(--bg-page);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Our Story & Passion</span>
+          <h2 class="section-title">Crafting Delicious Memories in Himatnagar</h2>
+          <p class="section-subtitle">
+            Born out of a genuine love for artisanal Italian pizzas and comforting cafe culture.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Left: Compact Images Column -->
+          <div class="about-images-col">
+            <div class="about-img-main">
+              <img src="images/cafe_interior.jpg" alt="Urban Bites Cafe Ambience and Cozy Seating" loading="lazy">
+            </div>
+            <div class="about-img-sub">
+              <img src="images/chef.jpg" alt="Artisan Head Chef Handcrafting Stone-Baked Pizza" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Right: Story & Details Column -->
+          <div class="about-content-col">
+            <p style="font-size:1.05rem; line-height:1.7; color:var(--text-main);">
+              Located conveniently at <strong>Civil Road, Sahkarijin, Himatnagar</strong>, Urban Bites Cafe & Pizzeria is dedicated to serving top-tier vegetarian cuisine. Every morning, our dough is hand-stretched, our sauces are slow-simmered with Italian herbs, and our ovens are fired up to stone-bake each pizza to crispy perfection.
+            </p>
+
+            <div class="about-features-list">
+              <div class="about-feature-box">
+                <div class="about-feature-icon">🔥</div>
+                <div class="about-feature-text">
+                  <strong>Stone-Baked Hearth</strong>
+                  <span>Authentic crispy crust with golden cheese blister.</span>
+                </div>
+              </div>
+              <div class="about-feature-box">
+                <div class="about-feature-icon">🌿</div>
+                <div class="about-feature-text">
+                  <strong>100% Pure Vegetarian</strong>
+                  <span>Wholesome fresh veggies, premium cheese, and zero compromises.</span>
+                </div>
+              </div>
+              <div class="about-feature-box">
+                <div class="about-feature-icon">⚡</div>
+                <div class="about-feature-text">
+                  <strong>30 Min Delivery</strong>
+                  <span>Packed piping hot and dispatched across Himatnagar quickly.</span>
+                </div>
+              </div>
+              <div class="about-feature-box">
+                <div class="about-feature-icon">❤️</div>
+                <div class="about-feature-text">
+                  <strong>Community First</strong>
+                  <span>Cozy ambience for study sessions, family lunches, and friendly hangouts.</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:8px;">
+              <button class="btn btn-primary" onclick="app.scrollToSection('menu')">
+                Explore What We Bake
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT & LOCATION SECTION
+         ========================================================================== -->
+    <section class="section-wrapper contact-section" id="contact" style="background:#FFF;">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Visit or Connect</span>
+          <h2 class="section-title">We'd Love To Host You</h2>
+          <p class="section-subtitle">
+            Drop by our cafe on Civil Road or send us a message for table reservations, takeaways, and party orders.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left: Information Card -->
+          <div class="contact-info-card">
+            <div class="contact-info-item">
+              <div class="contact-icon-bubble">📍</div>
+              <div class="contact-info-content">
+                <strong>Cafe Location</strong>
+                <p>Civil Road, Near Sahkarijin, Himatnagar, Gujarat 383001</p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-icon-bubble">📞</div>
+              <div class="contact-info-content">
+                <strong>Phone & WhatsApp Orders</strong>
+                <p><a href="tel:+919714100891">+91 9714100891</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-icon-bubble">🕒</div>
+              <div class="contact-info-content">
+                <strong>Opening Hours</strong>
+                <p>Monday – Sunday: <strong>10:00 AM – 11:00 PM</strong> (Open All 7 Days)</p>
+              </div>
+            </div>
+
+            <div class="contact-info-item">
+              <div class="contact-icon-bubble">✉️</div>
+              <div class="contact-info-content">
+                <strong>Email Address</strong>
+                <p><a href="mailto:irfangulamsurti@gmail.com">irfangulamsurti@gmail.com</a></p>
+              </div>
+            </div>
+
+            <a href="https://wa.me/919714100891" target="_blank" class="btn btn-whatsapp btn-block" style="margin-top:16px;">
+              💬 Direct WhatsApp Chat (+91 9714100891)
+            </a>
+
+            <!-- Map Iframe -->
+            <div class="contact-map-wrapper" style="margin-top:20px; border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border-light);">
+              <iframe 
+                src="https://maps.google.com/maps?q=Himatnagar%20Gujarat&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="190" 
+                style="border:0; display:block;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Urban Bites Himatnagar Location Map">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Right: Send Us a Message Form -->
+          <div class="contact-form-card">
+            <h3 style="font-size:1.5rem; margin-bottom:8px; color:var(--secondary);">Send Us a Message</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:20px;">
+              Have a question, feedback, or need a party order? Fill in the details below:
+            </p>
+
+            <form id="contactUsForm">
+              <div class="form-group">
+                <label class="form-label" for="contactName">Your Name *</label>
+                <input type="text" id="contactName" class="form-control" placeholder="Name" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactEmail">Your Email *</label>
+                <input type="email" id="contactEmail" class="form-control" placeholder="Email" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactPhone">Phone Number *</label>
+                <input type="tel" id="contactPhone" class="form-control" placeholder="Phone Number" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactMsg">Message / Inquiry *</label>
+                <textarea id="contactMsg" class="form-control" rows="4" placeholder="Your Message or Catering Inquiry" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" style="margin-top:12px;">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand" style="margin-bottom:16px;">
+            <div class="brand-icon">🍕</div>
+            <div class="brand-text">
+              <span class="brand-title" style="color:#FFF;">Urban<span style="color:var(--primary);">Bites</span></span>
+              <span class="brand-subtitle" style="color:#A8A19B;">Cafe & Pizzeria</span>
+            </div>
+          </div>
+          <p>
+            Civil Road, Sahkarijin, Himatnagar, Gujarat. Handcrafting delectable stone-baked pizzas and comforting cafe treats daily.
+          </p>
+          <a href="https://wa.me/919714100891" target="_blank" class="btn btn-whatsapp btn-sm" style="margin-top:8px;">
+            📲 WhatsApp Order: 9714100891
+          </a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="#home" onclick="app.scrollToSection('home'); return false;">🏠 Home</a></li>
+            <li><a href="#popular" onclick="app.scrollToSection('popular'); return false;">⭐ Popular Dishes</a></li>
+            <li><a href="#menu" onclick="app.scrollToSection('menu'); return false;">🍕 Full Menu</a></li>
+            <li><a href="#order-online" onclick="app.scrollToSection('order-online'); return false;">🛵 Order Online</a></li>
+            <li><a href="#reviews" onclick="app.scrollToSection('reviews'); return false;">⭐ Customer Reviews</a></li>
+            <li><a href="#about" onclick="app.scrollToSection('about'); return false;">☕ About Us</a></li>
+            <li><a href="#contact" onclick="app.scrollToSection('contact'); return false;">📞 Contact & Location</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Popular Picks</h5>
+          <ul class="footer-links">
+            <li><a href="javascript:void(0)" onclick="app.openFoodModal('margherita-pizza')">Margherita Pizza (₹165)</a></li>
+            <li><a href="javascript:void(0)" onclick="app.openFoodModal('prefix-pizza')">Prefix Pizza (₹299)</a></li>
+            <li><a href="javascript:void(0)" onclick="app.openFoodModal('crazy-4-pizza')">Crazy 4 Pizza (₹599)</a></li>
+            <li><a href="javascript:void(0)" onclick="app.openFoodModal('cheese-garlic-bread')">Cheese Garlic Bread (₹110)</a></li>
+            <li><a href="javascript:void(0)" onclick="app.openFoodModal('red-hot-pasta')">Red Hot Pasta (₹125)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Opening Hours</h5>
+          <p style="font-size:0.92rem; color:#A8A19B; line-height:1.6; margin-bottom:12px;">
+            Monday - Sunday<br>
+            <strong style="color:#FFF;">10:00 AM - 11:00 PM</strong><br>
+            Open All 7 Days
+          </p>
+          <p style="font-size:0.85rem; color:#A8A19B;">
+            Email: <a href="mailto:irfangulamsurti@gmail.com" style="color:var(--primary);">irfangulamsurti@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Urban Bites Cafe & Pizzeria. All rights reserved.</div>
+        <div style="color:#A8A19B;">Crafted with passion for authentic taste. Himatnagar, Gujarat.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       AI CHATBOT WIDGET ("BiteBot")
+       ========================================================================== -->
+  <button class="chatbot-launcher" id="chatbotLauncher" aria-label="Open Cafe Assistant Chat">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+  </button>
+
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-header-info">
+        <div class="bot-avatar">🤖</div>
+        <div class="bot-name">
+          <strong>BiteBot</strong>
+          <span class="bot-status">Online • Urban Bites Assistant</span>
+        </div>
+      </div>
+      <button id="chatbotCloseBtn" style="background:transparent; border:none; color:#FFF; font-size:1.2rem; cursor:pointer;" aria-label="Close chat">✕</button>
+    </div>
+
+    <div class="chatbot-messages" id="chatMessages">
+      <div class="chat-bubble bot">
+        Hello! 👋 Welcome to <strong>Urban Bites Cafe</strong>! How can I assist you today? You can ask about our pizzas, prices, opening timings, cafe address, or how to order!
+      </div>
+      <div class="chat-quick-replies">
+        <button class="quick-reply-chip" onclick="app.askBot('hello')">👋 Say Hello</button>
+        <button class="quick-reply-chip" onclick="app.askBot('pizza')">🍕 Popular Pizzas</button>
+        <button class="quick-reply-chip" onclick="app.askBot('timings')">🕒 Opening Hours</button>
+        <button class="quick-reply-chip" onclick="app.askBot('location')">📍 Cafe Location</button>
+        <button class="quick-reply-chip" onclick="app.askBot('order')">🛵 How to Order</button>
+      </div>
+    </div>
+
+    <div class="chatbot-input-bar">
+      <input type="text" id="chatInput" class="chat-input" placeholder="Type hello, pizza, timings...">
+      <button id="chatSendBtn" class="chat-send-btn" aria-label="Send Message">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Food Detail Modal -->
+  <div class="modal-backdrop" id="foodDetailModal" onclick="if(event.target === this) app.closeFoodModal();">
+    <div class="modal-content">
+      <button class="modal-close-btn" onclick="app.closeFoodModal()" aria-label="Close modal">✕</button>
+      <div id="foodModalBodyContent"></div>
+    </div>
+  </div>
+
+  <!-- Write Review Modal -->
+  <div class="modal-backdrop" id="writeReviewModal" onclick="if(event.target === this) app.closeReviewModal();">
+    <div class="modal-content" style="padding:28px;">
+      <button class="modal-close-btn" onclick="app.closeReviewModal()" aria-label="Close modal">✕</button>
+      <h3 style="font-size:1.6rem; color:var(--secondary); margin-bottom:8px;">Write a Review</h3>
+      <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:18px;">Share your experience dining with Urban Bites.</p>
+
+      <form id="writeReviewForm">
+        <div class="form-group">
+          <label class="form-label">Rate Your Experience</label>
+          <div class="star-rating-selector" id="reviewStarPicker">
+            <span class="star active" data-value="1">★</span>
+            <span class="star active" data-value="2">★</span>
+            <span class="star active" data-value="3">★</span>
+            <span class="star active" data-value="4">★</span>
+            <span class="star active" data-value="5">★</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reviewAuthorName">Your Name *</label>
+          <input type="text" id="reviewAuthorName" class="form-control" placeholder="Name" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reviewDishSelect">Dish You Ordered (Optional)</label>
+          <select id="reviewDishSelect" class="form-control">
+            <option value="">Select dish (optional)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="reviewCommentText">Your Review *</label>
+          <textarea id="reviewCommentText" class="form-control" rows="3" placeholder="Tell us how much you enjoyed the pizza, crust, or service..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:12px;">
+          Submit Review ⭐
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Order Success Confirmation Modal -->
+  <div class="modal-backdrop" id="orderSuccessModal" onclick="if(event.target === this) app.closeOrderConfirmationModal();">
+    <div class="modal-content" style="padding:28px;">
+      <button class="modal-close-btn" onclick="app.closeOrderConfirmationModal()" aria-label="Close modal">✕</button>
+      <div id="orderSuccessDetails"></div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="Urban.js"></script>
+</body>
+</html>

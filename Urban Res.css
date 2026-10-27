@@ -1,0 +1,412 @@
+/* ==========================================================================
+   URBAN BITES CAFE & PIZZERIA - RESPONSIVE STYLESHEET (Urban Res.css)
+   Guarantees pixel-perfect adaptability across Phone, Tablet & Laptop
+   "Not a single word breaks or overflows awkwardly"
+   ========================================================================== */
+
+/* Prevent unintended word breakage and awkward orphan words across all devices */
+h1, h2, h3, h4, .brand-title, .section-title, .hero-heading {
+  text-wrap: balance;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+p, .food-card-desc, .hero-desc {
+  text-wrap: pretty;
+}
+
+.btn, 
+.tab-btn, 
+.badge, 
+.card-badge, 
+.nav-link, 
+.cart-btn-nav, 
+.order-nav-btn, 
+.dish-price,
+.contact-info-content a,
+.contact-info-content p {
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   LAPTOPS & DESKTOPS (1025px - 1280px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .hero-heading {
+    font-size: clamp(2rem, 3.8vw, 3rem);
+  }
+  
+  .popular-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+    gap: 32px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   TABLETS & SMALL LAPTOPS (769px - 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .navbar {
+    height: 70px;
+  }
+  
+  .nav-menu {
+    gap: 16px;
+  }
+  
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-desc {
+    max-width: 620px;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-highlights {
+    justify-content: center;
+  }
+
+  .hero-media-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .popular-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .bestseller-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .bestseller-info {
+    text-align: center;
+  }
+
+  .bestseller-chips {
+    justify-content: center;
+  }
+
+  .order-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-content-col {
+    order: 1;
+  }
+
+  .about-images-col {
+    order: 2;
+    max-width: 680px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   MOBILE DEVICES (Phones: <= 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .site-header {
+    background: rgba(255, 255, 255, 0.96);
+  }
+
+  .navbar {
+    height: 64px;
+  }
+
+  /* Hide desktop menu, show hamburger */
+  .nav-menu {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .order-nav-btn {
+    display: none; /* Accessible in mobile drawer and hero */
+  }
+
+  .brand-title {
+    font-size: 1.25rem;
+  }
+
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .brand-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cart-btn-nav {
+    padding: 6px 12px;
+    font-size: 0.82rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    padding-top: 86px;
+    padding-bottom: 40px;
+  }
+
+  .hero-heading {
+    font-size: 2.1rem;
+    line-height: 1.2;
+  }
+
+  .hero-desc {
+    font-size: 0.96rem;
+  }
+
+  .hero-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-highlights {
+    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .hero-highlight-item {
+    gap: 8px;
+  }
+
+  .hero-float-badge {
+    padding: 8px 12px;
+    border-radius: 12px;
+  }
+
+  .hero-float-badge.badge-top {
+    top: 10px;
+    left: 8px;
+  }
+
+  .hero-float-badge.badge-bottom {
+    bottom: 12px;
+    right: 8px;
+  }
+
+  .float-badge-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .float-badge-text strong {
+    font-size: 0.82rem;
+  }
+
+  .float-badge-text span {
+    font-size: 0.7rem;
+  }
+
+  /* Popular Food & Menu */
+  .section-wrapper {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .popular-grid,
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .food-card-image {
+    height: 250px;
+  }
+
+  .bestseller-items-row {
+    grid-template-columns: 1fr;
+  }
+
+  .bestseller-banner {
+    padding: 24px 18px;
+    border-radius: var(--radius-lg);
+  }
+
+  .bestseller-info h3 {
+    font-size: 1.6rem;
+  }
+
+  /* Menu Tabs horizontally scrollable */
+  .menu-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+
+  .tab-btn {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+
+  /* Cart Drawer full width on small screens */
+  .cart-drawer {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .floating-cart-trigger {
+    bottom: 20px;
+    left: 16px;
+    padding: 10px 16px;
+    font-size: 0.88rem;
+  }
+
+  /* Reviews summary */
+  .reviews-summary-bar {
+    padding: 18px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* About Section */
+  .about-images-col {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .about-img-main, .about-img-sub {
+    height: 260px;
+    margin-top: 0;
+  }
+
+  .about-features-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contact & Form */
+  .contact-info-card, .contact-form-card {
+    padding: 20px 18px;
+    border-radius: var(--radius-lg);
+  }
+
+  .contact-info-content p, .contact-info-content a {
+    font-size: 0.95rem;
+    white-space: normal;
+  }
+
+  /* Chatbot */
+  .chatbot-launcher {
+    bottom: 20px;
+    right: 16px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .chatbot-launcher svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .chatbot-window {
+    bottom: 82px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    height: calc(100vh - 120px);
+    max-height: 480px;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   EXTRA SMALL PHONES (<= 380px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 380px) {
+  .hero-heading {
+    font-size: 1.8rem;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .hero-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.92rem;
+  }
+}
